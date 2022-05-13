@@ -1,82 +1,83 @@
 package com.mongoLibreria.libreria.model.Entity;
 
-import java.sql.Timestamp;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-import javax.persistence.GeneratedValue;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
+@Document(collection = "users")
+public class User {
+  @Id
+  private String id;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Document(collection="User")
-@Builder
-public class User  implements UserDetails {
-    @Id
-//    @GeneratedValue(generator = "uuid")
-//    @GenericGenerator(name = "uuid",strategy = "uuid2")
-    private String id;  
-    @NotNull
-    protected String password;
-    @Email(message = "mail not valid")
-    @NotNull
-    protected String email;   
-    @NotBlank
-    @Size(min = 3, max = 20, message = "First Name must be between 10 and 20 characters long")    
-    protected String firstName;
-    @NotBlank
-    @Size(min = 2, max = 20, message = "Last Name must be between 10 and 20 characters long")
-    protected String lastName;   
-    protected Timestamp timestamp;
-  
-    protected List<Role> roles;
+  @NotBlank
+  @Size(max = 20)
+  private String username;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
-    }
+  @NotBlank
+  @Size(max = 50)
+  @Email
+  private String email;
 
-    @Override
-    public String getUsername() {
-        return email;
-    }
+  @NotBlank
+  @Size(max = 120)
+  private String password;
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+  @DBRef
+  private Set<Role> roles = new HashSet<>();
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+  public User() {
+  }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+  public User(String username, String email, String password) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
+  }
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+  public String getId() {
+    return id;
+  }
 
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public Set<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+  }
 }
-

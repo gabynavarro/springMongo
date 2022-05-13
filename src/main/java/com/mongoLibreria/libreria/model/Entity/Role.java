@@ -1,27 +1,36 @@
 package com.mongoLibreria.libreria.model.Entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Document(collection="Role" )
+@Document(collection = "roles")
 public class Role {
+  @Id
+  private String id;
 
-    @Id
-//    @GeneratedValue(generator = "uuid")
-//    @GenericGenerator(name = "uuid",strategy = "uuid2")
-    private String id;
-    @NotNull
-    private String name;
-    private String description; 
+  private ERole name;
+
+  public Role() {
+
+  }
+
+  public Role(ERole name) {
+    this.name = name;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public ERole getName() {
+    return name;
+  }
+
+  public void setName(ERole name) {
+    this.name = name;
+  }
 }
