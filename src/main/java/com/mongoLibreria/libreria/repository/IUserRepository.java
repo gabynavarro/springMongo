@@ -1,11 +1,10 @@
-
 package com.mongoLibreria.libreria.repository;
 
-import com.mongoLibreria.libreria.model.Entity.Persona;
+import com.mongoLibreria.libreria.model.Entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersonaRepository extends MongoRepository<Persona, String>{
-    
+public interface IUserRepository extends MongoRepository <User, String> {
+    User findByEmail(String email);
 }

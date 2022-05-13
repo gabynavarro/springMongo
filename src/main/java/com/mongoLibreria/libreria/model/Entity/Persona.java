@@ -1,4 +1,4 @@
-package com.mongoLibreria.libreria.model;
+package com.mongoLibreria.libreria.model.Entity;
 
 
 import lombok.Data;

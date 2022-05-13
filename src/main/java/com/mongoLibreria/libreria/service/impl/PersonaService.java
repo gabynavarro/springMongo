@@ -1,7 +1,7 @@
 
-package com.mongoLibreria.libreria.service;
+package com.mongoLibreria.libreria.service.impl;
 
-import com.mongoLibreria.libreria.model.Persona;
+import com.mongoLibreria.libreria.model.Entity.Persona;
 import com.mongoLibreria.libreria.repository.PersonaRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
