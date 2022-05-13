@@ -1,8 +1,8 @@
 package com.mongoLibreria.libreria.model.mapper;
 
 import com.mongoLibreria.libreria.model.Entity.User;
-import com.mongoLibreria.libreria.model.reponse.UserRegisterRequest;
 import com.mongoLibreria.libreria.model.reponse.UserRegisterResponse;
+import com.mongoLibreria.libreria.model.request.UserRegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

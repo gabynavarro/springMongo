@@ -1,4 +1,4 @@
-package com.mongoLibreria.libreria.model.reponse;
+package com.mongoLibreria.libreria.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

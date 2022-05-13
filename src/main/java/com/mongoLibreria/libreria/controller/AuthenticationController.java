@@ -1,6 +1,6 @@
 package com.mongoLibreria.libreria.controller;
 
-import com.mongoLibreria.libreria.model.reponse.UserRegisterRequest;
+import com.mongoLibreria.libreria.model.request.UserRegisterRequest;
 import com.mongoLibreria.libreria.model.request.UserAuthenticatedRequest;
 import com.mongoLibreria.libreria.service.IAuthenticationService;
 import com.mongoLibreria.libreria.service.IRegisterUserService;
@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
+
 
 @RequiredArgsConstructor
 @RestController
