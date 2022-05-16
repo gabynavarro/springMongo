@@ -1,7 +1,7 @@
 package com.mongoLibreria.libreria.controller;
 
-import com.mongoLibreria.libreria.model.Persona;
-import com.mongoLibreria.libreria.service.PersonaService;
+import com.mongoLibreria.libreria.model.Entity.Persona;
+import com.mongoLibreria.libreria.service.impl.PersonaService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
