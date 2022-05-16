@@ -1,18 +1,29 @@
 package com.mongoLibreria.libreria.model.Entity;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Document(collection = "users")
-public class User {
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class User implements UserDetails{
   @Id
   private String id;
 
@@ -32,52 +43,30 @@ public class User {
   @DBRef
   private Set<Role> roles = new HashSet<>();
 
-  public User() {
-  }
+    public User(String username, String email, String encode) {
+        throw new UnsupportedOperationException("Not supported,  create't user."); 
+    }
+    
+    private Collection<? extends GrantedAuthority> authorities;
+    @Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
 
-  public User(String username, String email, String password) {
-    this.username = username;
-    this.email = email;
-    this.password = password;
-  }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true; }
 
-  public String getId() {
-    return id;
-  }
+    @Override
+    public boolean isAccountNonLocked() {
+       return true;   }
 
-  public void setId(String id) {
-    this.id = id;
-  }
+    @Override
+    public boolean isCredentialsNonExpired() {
+       return true; }
 
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public Set<Role> getRoles() {
-    return roles;
-  }
-
-  public void setRoles(Set<Role> roles) {
-    this.roles = roles;
-  }
+    @Override
+    public boolean isEnabled() {
+        return true;    }
+ 
 }
