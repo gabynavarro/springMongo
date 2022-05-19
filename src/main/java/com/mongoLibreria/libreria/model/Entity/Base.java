@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 public class Base implements Serializable {
     @Id
-    private String id; 
-    private Boolean state;
-    private Boolean up;
-    private LocalDate created;
+    protected String id; 
+    protected Boolean state;
+    protected Boolean up;
+    protected LocalDate created;
 }

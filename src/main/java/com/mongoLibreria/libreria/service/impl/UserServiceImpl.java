@@ -1,7 +1,6 @@
 package com.mongoLibreria.libreria.service.impl;
 
 import com.mongoLibreria.libreria.auth.filter.JwtUtil;
-import com.mongoLibreria.libreria.auth.filter.JwtUtils;
 import com.mongoLibreria.libreria.model.Entity.ERole;
 import com.mongoLibreria.libreria.model.Entity.Role;
 import com.mongoLibreria.libreria.model.Entity.User;
@@ -23,9 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -145,16 +142,7 @@ public class UserServiceImpl implements UserDetailsService, IRegisterUserService
         return userRepository.findByUsername(userInstance.toString());
     }
 
-//    public List<UserResponse> listAllUser(List<User> entities) {
-//        List<UserResponse> listResponse = new ArrayList<>();
-//        if (entities.size() == 0) {
-//            throw new EntityNotFoundException(USER_LIST_ERROR);
-//        }
-//        for (User entity : entities) {
-//            listResponse.add(userMapper.convertTo(entity));
-//        }
-//        return listResponse;
-//    }
+
 
 
 }
